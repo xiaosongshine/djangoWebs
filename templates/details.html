@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block bodyclass %}
+<body class="single is-preload">
+{% endblock  %}
+{% block main %}
+
+
+    <div id="main">
+
+        <!-- Post -->
+            <article class="post">
+                <header>
+                    <div class="title">
+                        <h2><a href="#">[深度学习概念]·深度学习中人脸识别开发解析</a></h2>
+                        <p>人脸识别问题宏观上分为两类：1. 人脸验证（又叫人脸比对）2. 人脸识别。</p>
+                    </div>
+                    <div class="meta">
+                        <time class="published" datetime="2015-11-01">November 1, 2015</time>
+                        <a href="#" class="author"><span class="name">小宋是呢</span><img src='{% static "images/XSlogo.jpg" %}' alt="" /></a>
+                    </div>
+                </header>
+                <span class="image featured"><img src='{% static "images/pic01.jpg"%}' alt="" /></span>
+                <p>人脸识别是什么
+
+
+
+人脸识别问题宏观上分为两类：1. 人脸验证（又叫人脸比对）2. 人脸识别。
+
+
+
+人脸验证做的是 1 比 1 的比对，即判断两张图片里的人是否为同一人。最常见的应用场景便是人脸解锁，终端设备（如手机）只需将用户事先注册的照片与临场采集的照片做对比，判断是否为同一人，即可完成身份验证。
+
+
+
+人脸识别做的是 1 比 N 的比对，即判断系统当前见到的人，为事先见过的众多人中的哪一个。比如疑犯追踪，小区门禁，会场签到，以及新零售概念里的客户识别。</p>
+                <p>这些应用场景的共同特点是：人脸识别系统都事先存储了大量的不同人脸和身份信息，系统运行时需要将见到的人脸与之前存储的大量人脸做比对，找出匹配的人脸。
+
+
+
+两者在早期（2012年~2015年）是通过不同的算法框架来实现的，想同时拥有人脸验证和人脸识别系统，需要分开训练两个神经网络。而 2015 年 Google 的 FaceNet [1] 论文的发表改变了这一现状，将两者统一到一个框架里。 </p>
+                <footer>
+                    <ul class="stats">
+                        <li><a href="#">General</a></li>
+                        <li><a href="#" class="icon fa-heart">28</a></li>
+                        <li><a href="#" class="icon fa-comment">128</a></li>
+                    </ul>
+                </footer>
+            </article>
+
+    </div>
+
+<!-- Footer -->
+    <section id="footer">
+        <ul class="icons">
+            <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
+            <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+    </section>
+
+
+{% endblock  %}

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+
+{% load staticfiles %}
+<html>
+	<head>
+		<title>小宋一路向前</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href='{% static "assets/css/main.css" %}' />
+	</head>
+	{% block bodyclass %}
+
+    {% endblock  %}
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h><a href="index.html">小宋是呢</a></h>
+						<nav class="links">
+							<ul>
+								<li><a href="index.html"><h>首页</h></a></li>
+								<li><a href="#"><h>分类</h></a></li>
+								<li><a href="#"><h>归档</h></a></li>
+								<li><a href="#"><h>关于</h></a></li>
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">查找</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">菜单</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+						<!-- Search -->
+							<section>
+								<form class="search" method="get" action="#">
+									<input type="text" name="query" placeholder="Search" />
+								</form>
+							</section>
+
+						<!-- Links -->
+							<section>
+								<ul class="links">
+									<li>
+										<a href="#">
+											<h>主页</h>
+											<p>小宋是呢的家</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h>分类</h>
+											<p>文章内容划分</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h>归档</h>
+											<p>时间顺序归档</p>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h>关于</h>
+											<p>有关于我的事</p>
+										</a>
+									</li>
+								</ul>
+							</section>
+
+						<!-- Actions -->
+							<section>
+								<ul class="actions stacked">
+									<li><a href="#" class="button large fit">联系</a></li>
+								</ul>
+							</section>
+
+					</section>
+
+                <!-- base -->
+                {% block main %}
+                {% endblock  %}
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js' %}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'assets/js/util.js' %}"></script>
+			<script src="{% static 'assets/js/main.js' %}"></script>
+
+	</body>
+</html>
