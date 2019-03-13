@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+
+<title>有关于我</title>
+
+{% endblock  %}
+
+{% block bodyclass %}
+<body class="single is-preload">
+{% endblock  %}
+{% block body %}
+
+
+<div id="main">
+
+        <!-- Intro -->
+            <section id="intro">
+                <a href="#" class="logo"><img src='{% static "images/XSlogo.jpg" %}'  alt="" /></a>
+                <header>
+                    <h2>未来不完美</h2>
+                    <p>所以一直要努力</p>
+                </header>
+            </section>
+
+
+        <!-- Mini Posts -->
+
+
+
+        <!-- About -->
+            <section class="blurb">
+                <h2>关于</h2>
+                <p>深思科技-专注深度学习，热爱深度思考。邮箱:xiaosongshine@163.com。</p>
+            </section>
+
+        <!-- Footer -->
+            <section id="footer">
+                <ul class="icons">
+                    <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+                    <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
+                    <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+                </ul>
+                <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+            </section>
+
+    </div>
+
+
+
+{% endblock  %}

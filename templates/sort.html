@@ -3,7 +3,7 @@
 
 {% block title %}
 
-<title>查找结果</title>
+<title>分类页面</title>
 
 {% endblock  %}
 
@@ -47,7 +47,7 @@
 
             <ul class="actions pagination">
                 {% if allarticle.has_previous %}
-                <li class="prev-page"><a href="?search={{ ss }}&page={{ allarticle.previous_page_number }}">前页</a></li>
+                <li class="prev-page"><a href="?page={{ allarticle.previous_page_number }}">前页</a></li>
                 {% else %}
                 <li class="prev-page"></li>
                 {% endif %}
@@ -67,7 +67,7 @@
 
 
                     {% if allarticle.has_next %}
-                        <li class="next-page"><a href="?search={{ ss }}&page={{ allarticle.next_page_number }}">后页</a></li>
+                        <li class="next-page"><a href="?page={{ allarticle.next_page_number }}">后页</a></li>
                     {% else %}
                         <li class="prev-page"></li>
                     {% endif %}
@@ -76,45 +76,19 @@
 
     </div>
 
-            <section id="sidebar">
+        <section id="sidebar">
 
         <!-- Intro -->
             <section id="intro">
-                <a href="/me" class="logo"><img src='{% static "images/XSlogo.jpg" %}'  alt="" /></a>
+                <a href="#" class="logo"><img src='{% static "images/XSlogo.jpg" %}'  alt="" /></a>
                 <header>
                     <h2>未来不完美</h2>
                     <p>所以一直要努力</p>
                 </header>
             </section>
 
-        <!-- Mini Posts -->
-
-            <section>
-            <h3>热门推荐</h3>
-                <div class="mini-posts">
-
-                    <!-- Mini Post -->
-                    <!-- django                                                                                 -->
-                    {% for h in hot %}
-
-                    <article class="mini-post">
-                            <header>
-                                <h3><a href="/details-{{ h.id }}.html">{{ h.title }}</a></h3>
-                                <p>阅读：{{ h.views }}</p>
-                                <time class="published" datetime="2015-10-19">{{ h.created_time|date:"Y年m月d日" }}</time>
-                                <a href="/me" class="author"><img src='{% static "images/XSlogo.jpg"%}' alt="" /></a>
-                            </header>
-                            <a href="/details-{{ h.id }}.html" class="image"><img src="media/{{ h.img }}" alt="" /></a>
-                    </article>
-
-                    {% endfor %}
-
-                    <!-- django                                                                                  -->
 
 
-
-                </div>
-            </section>
 
         <!-- Posts List -->
             <section>
@@ -141,9 +115,9 @@
         <!-- About -->
             <section class="blurb">
                 <h2>关于</h2>
-                <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.</p>
+                <p>深思科技-专注深度学习，热爱深度思考。邮箱:xiaosongshine@163.com。</p>
                 <ul class="actions">
-                    <li><a href="#" class="button">更多...</a></li>
+                    <li><a href="/me" class="button">更多...</a></li>
                 </ul>
             </section>
 
@@ -158,8 +132,7 @@
                 </ul>
                 <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
             </section>
-
-    </section>
+        </section>
 
 
 

@@ -28,11 +28,12 @@ from django.conf import settings
 urlpatterns = [
     path("",index),
     path('list-<int:lid>.html', lists, name='lists'),#列表页
-    #path('details-<int:sid>.html', details, name='details'),#内容页
-    path('details/', details, name='details'),#内容页
+    path("sort-<int:sid>.html",sort,name="sort"),
+    path("archive-<int:tid>.html",archive,name="archive"),
+    path('me', me, name='me'),#联系我们单页
+    path('search', search, name='search'),#搜索列表页
+    path('details-<int:did>.html', details, name='details'),#内容页
     path('tag/<tag>', tag, name='tags'),#标签列表页
-    path('search/', search, name='search'),#搜索列表页
-    path('about/', about, name='about'),#联系我们单页
     path("admin/", admin.site.urls),
     path("ueditor/", include("DjangoUeditor.urls")),
     re_path('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),#增加此行

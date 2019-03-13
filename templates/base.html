@@ -3,11 +3,15 @@
 {% load staticfiles %}
 <html>
 	<head>
-		<title>小宋一路向前</title>
+		{% block title %}
+
+		{% endblock  %}
+
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href='{% static "assets/css/main.css" %}' />
 	</head>
+
 	{% block bodyclass %}
 
     {% endblock  %}
@@ -17,21 +21,21 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h><a href="index.html">小宋是呢</a></h>
+						<h><a href="/">小宋是呢</a></h>
 						<nav class="links">
 							<ul>
-								<li><a href="index.html"><h>首页</h></a></li>
-								<li><a href="#"><h>分类</h></a></li>
-								<li><a href="#"><h>归档</h></a></li>
-								<li><a href="#"><h>关于</h></a></li>
+								<li><a href="/"><h>首页</h></a></li>
+								<li><a href="/sort-1.html"><h>分类</h></a></li>
+								<li><a href="/archive-1.html"><h>归档</h></a></li>
+								<li><a href="/me"><h>关于</h></a></li>
 							</ul>
 						</nav>
 						<nav class="main">
 							<ul>
 								<li class="search">
 									<a class="fa-search" href="#search">查找</a>
-									<form id="search" method="get" action="#">
-										<input type="text" name="query" placeholder="Search" />
+									<form id="search" method="get" action="/search">
+										<input type="text" name="search" placeholder="Search" />
 									</form>
 								</li>
 								<li class="menu">
@@ -46,8 +50,8 @@
 
 						<!-- Search -->
 							<section>
-								<form class="search" method="get" action="#">
-									<input type="text" name="query" placeholder="Search" />
+								<form class="search" method="get"  action="/search">
+									<input type="text" name="search" placeholder="Search" />
 								</form>
 							</section>
 
@@ -55,25 +59,25 @@
 							<section>
 								<ul class="links">
 									<li>
-										<a href="#">
+										<a href="/">
 											<h>主页</h>
 											<p>小宋是呢的家</p>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="/sort-1.html">
 											<h>分类</h>
 											<p>文章内容划分</p>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="/archive-1.html">
 											<h>归档</h>
 											<p>时间顺序归档</p>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="/me">
 											<h>关于</h>
 											<p>有关于我的事</p>
 										</a>
@@ -91,7 +95,7 @@
 					</section>
 
                 <!-- base -->
-                {% block main %}
+                {% block body %}
                 {% endblock  %}
 
 			</div>

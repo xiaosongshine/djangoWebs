@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Banner, Category, Tag, Tui, Article, Link 
+from .models import Banner, Category, Tag, Tui, Article, Link
 #导入需要管理的数据库表
 
 @admin.register(Article)
