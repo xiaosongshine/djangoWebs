@@ -11,7 +11,7 @@
 <body class="single is-preload">
 {% endblock  %}
 {% block body %}
-
+{% load comments %}
 
     <div id="main">
 
@@ -32,15 +32,94 @@
                 <article class="post">
                     {{ show.body|safe }}
                 </article>
-
+                {% get_comment_list for show as comments %}
                 <footer>
                     <ul class="stats">
                         <li><a href="/sort-{{ show.category.id }}.html">{{ show.category.name }}</a></li>
                         <li><a href="#" class="icon fa-heart">28</a></li>
-                        <li><a href="#" class="icon fa-comment">128</a></li>
+                        <li><a href="#" class="icon fa-comment">{{ comments|length}}</a></li>
                         <li><a href="#" onclick="return false;" class="icon fa-eye">{{ show.views }}</a></li>
                     </ul>
                 </footer>
+                <h3>评论列表</h3>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {% for comment in comments %}
+                            <div class="blog_comment" name="F{{comment.id}}">
+                                <p class="comment_title">
+                                    {{ comment.submit_date|date:"Y-m-d H:i"}} @ {{ comment.user_name }} ：
+                                </p>
+                                <p class="comment_content">{{ comment.comment }}</p>
+                            </div>
+                        {% empty %}
+                            <span>暂无评论</span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <h3>新的评论</h3>
+                {% get_comment_form for show as blog_form %}
+
+                <form id="comment_form"
+                    class="form-horizontal"
+                    action="{% comment_form_target %}"
+                    method="post"
+                >
+                    {% csrf_token %}
+
+                    {# 必须的字段 #}
+                    {{ blog_form.object_pk }}
+                    {{ blog_form.content_type }}
+                    {{ blog_form.timestamp }}
+                    {{ blog_form.site }}
+                    {{ blog_form.submit_date }}
+                    {{ blog_form.security_hash }}
+                    {# 用户名字段，这个后面会修改为登录用户评论，无需填这个 #}
+                    <div class="control-group">
+                        <label class="control-label" for="id_name">名称： </label>
+                        <div class="controls">
+                            <input type="text"
+                                id="id_name" class="input-xlarge" name="name"
+                                placeholder="您的姓名"
+                                value="{{ user.username }}" />
+                        </div>
+                    </div>
+                    {# 邮箱地址字段 #}
+                    <div class="control-group">
+                        <label class="control-label" for="id_email">邮箱： </label>
+                        <div class="controls">
+                            <input type="email"
+                                id="id_email" class="input-xlarge" name="email"
+                                placeholder="您的邮箱"
+                                value="{{ user.email }}" />
+                        </div>
+                    </div>
+
+                    {# 评论内容 #}
+                    <a name="newcomment" id="newcomment"></a>
+                    <div class="control-group">
+                        <label class="control-label" for="id_comment">评论： </label>
+                        <div class="controls">
+                            <textarea rows="6"
+                                    id="id_comment" class="input-xlarge comment" name="comment"
+                                    placeholder="评论内容">
+                            </textarea>
+                        </div>
+                    </div>
+                    {# 防垃圾评论 #}
+                    <p style="display:none;">
+                        <label for="id_honeypot">如果你在该字段中输入任何内容，你的评论就会被视为垃圾评论。</label>
+                        <input type="text" name="honeypot" id="id_honeypot">
+                    </p>
+                    {# 表单按钮 #}
+                    <div class="controls">
+                        <div class="form-actions">
+                            <input class="btn btn-info" id="submit_btn" type="submit" name="submit" value="提交"/>
+                            <input type="hidden" name="next" value="/details-{{show.id}}.html"/>
+                        </div>
+                    </div>
+                </form>
+
             </article>
 
             <div>

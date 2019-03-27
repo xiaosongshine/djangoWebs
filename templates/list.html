@@ -11,6 +11,7 @@
 <body class="is-preload">
 {% endblock  %}
 {% block body %}
+{% load comments %}
 
 
     <div id="main">
@@ -29,14 +30,15 @@
                         <a href="/me" class="author"><span class="name">{{article.user}}</span><img src='{% static "images/XSlogo.jpg"%}' alt="" /></a>
                     </div>
                 </header>
+                {% get_comment_list for article as comments %}
                 <footer>
                     <ul class="actions">
                         <li><a href="/details-{{article.id}}.html" class="button large">继续阅读</a></li>
                     </ul>
                     <ul class="stats">
-                        <li><a href="/list-{{ article.category.id }}.html">{{ article.category.name }}</a></li>
+                        <li><a href="/sort-{{ article.category.id }}.html">{{ article.category.name }}</a></li>
                         <li><a href="#" class="icon fa-heart">28</a></li>
-                        <li><a href="#" class="icon fa-comment">128</a></li>
+                        <li><a href="#" class="icon fa-comment">{{ comments|length}}</a></li>
                         <li><a href="#" onclick="return false;" class="icon fa-eye">{{ article.views }}</a></li>
                     </ul>
                 </footer>
@@ -117,26 +119,6 @@
             </section>
 
         <!-- Posts List -->
-            <section>
-            <h3>文章内容分类</h3>
-                <ul class="posts">
-                    <!-- django                                                                                 -->
-                    {% for category in allcategory %}
-
-                    <li>
-                        <article>
-                            <header>
-                                <h3><a href="/sort-{{ category.id }}.html">{{ category.name }}</a></h3>
-                                <time class="published" datetime="2015-10-20">October 20, 2015</time>
-                            </header>
-                            <a href="/sort-{{ category.id }}.html" class="image"><img src='{% static "images/pic08.jpg"%}' alt="" /></a>
-                        </article>
-                    </li>
-                    {% endfor %}
-
-                    <!-- django                                                                                 -->
-                </ul>
-            </section>
 
         <!-- About -->
             <section class="blurb">

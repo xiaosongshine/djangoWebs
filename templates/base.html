@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 
 {% load staticfiles %}
+
 <html>
 	<head>
 		{% block title %}
@@ -8,8 +9,9 @@
 		{% endblock  %}
 
 		<meta charset="utf-8" />
+		<link rel="icon" type="image/x-icon" href='{% static "images/XSlogo.jpg"%}'/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href='{% static "assets/css/main.css" %}' />
+		<link rel="stylesheet" href='{% static "assets/css/main.css" %}'/>
 	</head>
 
 	{% block bodyclass %}
@@ -73,7 +75,7 @@
 									<li>
 										<a href="/archive-1.html">
 											<h>归档</h>
-											<p>时间顺序归档</p>
+											<p>文章标签归档</p>
 										</a>
 									</li>
 									<li>
@@ -88,7 +90,7 @@
 						<!-- Actions -->
 							<section>
 								<ul class="actions stacked">
-									<li><a href="#" class="button large fit">联系</a></li>
+									<li><a href="/admin" class="button large fit">登陆</a></li>
 								</ul>
 							</section>
 
@@ -99,6 +101,34 @@
                 {% endblock  %}
 
 			</div>
+
+
+
+			 <script src="http://static.tctip.com/tctip-1.0.0.min.js"></script>
+				<script>
+				new tctip({
+					top: '20%',
+					button: {
+						id: 4,
+						type: 'zanzhu',
+					},
+					list: [
+						{
+							type: 'alipay',
+							qrImg: '{% static "images/qr/zfb.jpg"%}',
+							desc: '感谢您的支持',
+						}, {
+							type: 'wechat',
+							qrImg: '{% static "images/qr/wx.png"%}',
+							desc: '您的鼓励是我前进的力量',
+						},
+					],
+					stat:false,
+				}).init()
+				</script>
+
+
+
 
 		<!-- Scripts -->
 			<script src="{% static 'assets/js/jquery.min.js' %}"></script>

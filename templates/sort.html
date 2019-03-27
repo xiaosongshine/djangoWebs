@@ -11,7 +11,7 @@
 <body class="is-preload">
 {% endblock  %}
 {% block body %}
-
+{% load comments %}
 
     <div id="main">
         <h2>{{cname}}</h2>
@@ -29,14 +29,15 @@
                         <a href="/me" class="author"><span class="name">{{article.user}}</span><img src='{% static "images/XSlogo.jpg"%}' alt="" /></a>
                     </div>
                 </header>
+                {% get_comment_list for article as comments %}
                 <footer>
                     <ul class="actions">
                         <li><a href="/details-{{article.id}}.html" class="button large">继续阅读</a></li>
                     </ul>
                     <ul class="stats">
-                        <li><a href="/list-{{ article.category.id }}.html">{{ article.category.name }}</a></li>
+                        <li><a href="/sort-{{ article.category.id }}.html">{{ article.category.name }}</a></li>
                         <li><a href="#" class="icon fa-heart">28</a></li>
-                        <li><a href="#" class="icon fa-comment">128</a></li>
+                        <li><a href="#" class="icon fa-comment">{{ comments|length}}</a></li>
                         <li><a href="#" onclick="return false;" class="icon fa-eye">{{ article.views }}</a></li>
                     </ul>
                 </footer>
@@ -110,6 +111,33 @@
 
                     <!-- django                                                                                 -->
                 </ul>
+            </section>
+
+            <section>
+            <h3>热门推荐</h3>
+                <div class="mini-posts">
+
+                    <!-- Mini Post -->
+                    <!-- django                                                                                 -->
+                    {% for h in hot %}
+
+                    <article class="mini-post">
+                            <header>
+                                <h3><a href="/details-{{ h.id }}.html">{{ h.title }}</a></h3>
+                                <p>阅读：{{ h.views }}</p>
+                                <time class="published" datetime="2015-10-19">{{ h.created_time|date:"Y年m月d日" }}</time>
+                                <a href="/me" class="author"><img src='{% static "images/XSlogo.jpg"%}' alt="" /></a>
+                            </header>
+                            <a href="/details-{{ h.id }}.html" class="image"><img src="media/{{ h.img }}" alt="" /></a>
+                    </article>
+
+                    {% endfor %}
+
+                    <!-- django                                                                                  -->
+
+
+
+                </div>
             </section>
 
         <!-- About -->

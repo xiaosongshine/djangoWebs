@@ -29,11 +29,12 @@ def index(request):
 #列表页
 def lists(request,lid):
     allcategory = Category.objects.all()#通过Category表查出所有分类
+    hot = Article.objects.all().order_by('-views')[:6]#通过浏览数进行排序
     #把查询出来的分类封装到上下文里
     context = {
             'allcategory': allcategory,
     }
-    return render(request, 'list.html', context)#把上下文传到index.html页面
+    return render(request, 'list.html', locals())#把上下文传到index.html页面
 #内容页
 def details(request,did):
     show = Article.objects.get(id=did)#查询指定ID的文章
@@ -69,12 +70,15 @@ def me(request):
 
 def sort(request,sid):
 
+    hot = Article.objects.all().order_by('-views')[:6]#通过浏览数进行排序
+
     allarticle = Article.objects.filter(category_id=sid)#获取通过URL传进来的lid，然后筛选出对应文章
     cname = Category.objects.get(id=sid)#获取当前文章的栏目名
     allcategory = Category.objects.all()#通过Category表查出所有分类
 
     page = request.GET.get('page')#在URL中获取当前页面数
     paginator = Paginator(allarticle, 3)#对查询到的数据对象list进行分页，设置超过1条数据就分页
+
     try:
         allarticle = paginator.page(page)#获取当前页码的记录
     except PageNotAnInteger:
@@ -86,6 +90,7 @@ def sort(request,sid):
     return render(request, 'sort.html', locals())#把上下文传到index.html页面
 
 def archive(request,tid):
+    hot = Article.objects.all().order_by('-views')[:6]#通过浏览数进行排序
     allarticle = Article.objects.filter(tui_id=tid)
     allTag = Tui.objects.all()#通过Category表查出所有分类
     cname = Tui.objects.get(id=tid)#获取当前文章的栏目名

@@ -12,6 +12,7 @@
 {% endblock  %}
 
 {% block body %}
+{% load comments %}
 
 
     <div id="main">
@@ -29,8 +30,9 @@
                         <a href="/me" class="author"><span class="name">{{article.user}}</span><img src='{% static "images/XSlogo.jpg"%}' alt="" /></a>
                     </div>
                 </header>
-                <a href="/details-{{article.id}}.html" class="image featured"><img src="media/{{ article.img }}" alt="" /></a>
+                <a href="/details-{{article.id}}.html" class="image featured"><img   src="media/{{ article.img }}" alt="" /></a>
                 <p>{{article.excerpt}}</p>
+                {% get_comment_list for article as comments %}
                 <footer>
                     <ul class="actions">
                         <li><a href="/details-{{article.id}}.html" class="button large">继续阅读</a></li>
@@ -38,7 +40,7 @@
                     <ul class="stats">
                         <li><a href="/sort-{{ article.category.id }}.html">{{ article.category.name }}</a></li>
                         <li><a href="#" class="icon fa-heart">28</a></li>
-                        <li><a href="#" class="icon fa-comment">128</a></li>
+                        <li><a href="#" class="icon fa-comment">{{ comments|length}}</a></li>
                         <li><a href="#" onclick="return false;" class="icon fa-eye">{{ article.views }}</a></li>
                     </ul>
                 </footer>

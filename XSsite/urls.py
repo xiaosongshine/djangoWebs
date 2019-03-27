@@ -36,6 +36,8 @@ urlpatterns = [
     path('tag/<tag>', tag, name='tags'),#标签列表页
     path("admin/", admin.site.urls),
     path("ueditor/", include("DjangoUeditor.urls")),
+    path(r'^comments/', include('django_comments.urls')),
     re_path('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),#增加此行
+    re_path('^static/(?P<path>.*)$', serve, {'document_root': settings.STATICFILES_DIRS}),#增加此行
 
 ]
